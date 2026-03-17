@@ -9,9 +9,9 @@ const Home = () => {
     const options = {
       strings: [
         "Welcome to my profile",
-        "My Name is John Doe",
-        "I'm full stack developer",
-        "Androide Developer (React Native)",
+        "My Name is Shantanu",
+        "I'm python full stack developer",
+        
       ],
       typeSpeed: 50,
       backSpeed: 50,
