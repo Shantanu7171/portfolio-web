@@ -1,0 +1,18 @@
+[
+  {
+    "key": 1,
+    "title": "React Recipe",
+    "imageSrc": "https://cdn.pixabay.com/photo/2016/08/16/17/12/skyscrapers-1598418_640.jpg",
+    "description": "This is a project made with complete React js. using Mealdb API",
+    "demo": "https://food-app-1r6i.vercel.app/",
+    "source": "https://github.com/Shantanu7171/Food_app"
+  },
+  {
+    "key": 2,
+    "title": "Blog Website",
+    "imageSrc": "https://www.hostgator.com/blog/wp-content/uploads/2018/10/Best-Website-Builder-for-Blogging.png",
+    "description": "This is a project made with complete django and jinga templates.",
+    "demo": "https://blogweb-hs4a.onrender.com",
+    "source": "https://github.com/Shantanu7171/blogweb"
+  }
+]
