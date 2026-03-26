@@ -14,5 +14,13 @@
     "description": "This is a project made with complete django and jinga templates.",
     "demo": "https://blogweb-hs4a.onrender.com",
     "source": "https://github.com/Shantanu7171/blogweb"
+  },
+  {
+    "key": 3,
+    "title": "Finance Analyzer",
+    "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi0sK-b7Jqt2aRAA1cEyvCTsJdb4BrIOQFHA&s",
+    "description": "AI-based system to analyze expenses and provide financial insights",
+    "demo": "https://finance-analyzer-9x58.onrender.com/",
+    "source": "https://github.com/Shantanu7171/Finance_Analyzer"
   }
 ]
