@@ -1,3 +1,68 @@
-{
-    
-}
+[
+  {
+    "id": 1,
+    "type": "college",
+    "degree": "B.E. in Information Technology",
+    "institution": "Shri Sant Gajanan Maharaj College Of Engineering (SSGMCE)",
+    "location": "Shegaon, Maharashtra",
+    "duration": "2023 - 2027 (Expected)",
+    "status": "Currently in 3rd Year",
+    "grade": "CGPA: 8.47",
+    "description": "Pursuing Bachelor of Engineering in IT with strong focus on core computer science fundamentals, software engineering, and full-stack development.",
+    "highlights": [
+      "Current Academic Performance: 8.47 CGPA",
+      "Core Coursework: Data Structures & Algorithms, Object-Oriented Programming (OOP), Database Management Systems (DBMS)",
+      "Active participant in technical projects and development workshops"
+    ],
+    "tags": ["Information Technology", "Python", "DSA", "DBMS", "OOP", "React"]
+  },
+  {
+    "id": 2,
+    "type": "school12",
+    "degree": "Class 12th (Higher Secondary - HSC)",
+    "institution": "S.F.L High School & J.R College",
+    "location": "Dhamangaon Rly, Maharashtra",
+    "duration": "2021 - 2023",
+    "status": "Completed (2023)",
+    "grade": "Percentage: 88.83%",
+    "description": "Completed Higher Secondary Certificate with distinction in Science stream, with specialization in Electronics & Telecommunication.",
+    "highlights": [
+      "Scored 88.83% in Maharashtra State Board HSC Examinations",
+      "Focused on Physics, Chemistry, Mathematics & Electronics & Telecommunication"
+    ],
+    "tags": ["HSC", "Science Stream", "Mathematics", "Electronics & Telecommunication"]
+  },
+  {
+    "id": 3,
+    "type": "school10",
+    "degree": "Class 10th (Secondary School - SSC)",
+    "institution": "S.F.L High School & J.R College",
+    "location": "Dhamangaon Rly, Maharashtra",
+    "duration": "2020 - 2021",
+    "status": "Completed (2021)",
+    "grade": "Percentage: 93.60%",
+    "description": "Graduated secondary school with outstanding academic merit and distinction.",
+    "highlights": [
+      "Secured 93.60% with distinction in Maharashtra State Board SSC Examinations",
+      "Consistently achieved top academic rankings"
+    ],
+    "tags": ["SSC", "Top Merit", "Academic Distinction"]
+  },
+  {
+    "id": 4,
+    "type": "training",
+    "degree": "AS/400 Enterprise Training",
+    "institution": "One Smarter Inc.",
+    "location": "Remote / Industry Training",
+    "duration": "Hands-on Practical Training",
+    "status": "Completed",
+    "grade": "Industry Exposure",
+    "description": "Practical hands-on training in AS/400 (IBM i) enterprise environment and database workflows.",
+    "highlights": [
+      "Worked with DDS, Subfiles, and database handling",
+      "Gained practical exposure to enterprise systems and legacy business applications",
+      "Django Certification — GFG Nation Skillup"
+    ],
+    "tags": ["AS/400", "IBM i", "DDS", "Enterprise DB", "Django Certified"]
+  }
+]

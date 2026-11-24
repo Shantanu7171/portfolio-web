@@ -1,26 +1,526 @@
 [
   {
     "key": 1,
-    "title": "React Recipe",
-    "imageSrc": "https://cdn.pixabay.com/photo/2016/08/16/17/12/skyscrapers-1598418_640.jpg",
-    "description": "This is a project made with complete React js. using Mealdb API",
-    "demo": "https://food-app-1r6i.vercel.app/",
-    "source": "https://github.com/Shantanu7171/Food_app"
+    "title": "Finance Analyzer",
+    "category": "Full Stack & AI",
+    "imageSrc": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80",
+    "description": "Web-based finance management system using Django and Jinja Templates. Processed bank statement CSVs using Pandas for automated transaction categorization, overspending detection, and subscription tracking with actionable financial reports.",
+    "tags": ["Django", "PostgreSQL", "Pandas", "Jinja Templates", "REST API"],
+    "demo": "https://finance-analyzer-9x58.onrender.com/",
+    "source": "https://github.com/Shantanu7171/Finance_Analyzer",
+    "architecture": {
+      "summary": "Automated ETL financial analysis pipeline: CSV ingestion to Pandas classification, PostgreSQL storage, and real-time budgeting insight reports.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Bank Statement Ingestion",
+          "tool": "BankStatementParser",
+          "role": "Receives CSV statements, validates required columns (Date, Description, Amount), and streams into memory.",
+          "input": "User Bank Statement CSV",
+          "output": "Sanitized File Stream",
+          "subNodes": [
+            "CSV Upload Stream",
+            "Required Columns Validation",
+            "MIME Format Check",
+            "BankStatementParser Service"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Data Cleaning & Parsing",
+          "tool": "Pandas & Python",
+          "role": "Executes pd.read_csv, normalizes dates with pd.to_datetime, cleans whitespace, and formats Decimals.",
+          "input": "Raw CSV Data Stream",
+          "output": "Clean Structured DataFrame",
+          "subNodes": [
+            "pd.read_csv Parsing",
+            "Date Normalization",
+            "Decimal Amount Conversion",
+            "Clean DataFrame Struct"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Transaction Classification",
+          "tool": "Django Income & Expense ORM",
+          "role": "Differentiates positive amounts as Income and negative amounts as Expenses with automatic category assignment.",
+          "input": "Clean Transactions",
+          "output": "Categorized Spend Entities",
+          "subNodes": [
+            "Income.objects.create",
+            "Expense.objects.create",
+            "Category Vector Rules",
+            "User Entity Association"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Recurring Subscriptions Engine",
+          "tool": "Subscriptions App",
+          "role": "Identifies recurring merchants, computes billing intervals, and flags renewal alerts.",
+          "input": "Categorized Transactions",
+          "output": "Subscription Anomaly Flags",
+          "subNodes": [
+            "Recurring Merchant Filter",
+            "Billing Interval Detection",
+            "Renewal Alert Logic",
+            "Active Subscription Tracker"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Relational Persistence",
+          "tool": "PostgreSQL & Django ORM",
+          "role": "Stores indexed user transactions, categories, and monthly summaries with ACID relational integrity.",
+          "input": "Financial Entities",
+          "output": "Indexed PostgreSQL Records",
+          "subNodes": [
+            "PostgreSQL Database",
+            "Foreign Key Integrity",
+            "Composite Index Schema",
+            "ACID Safe Transactions"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "Financial Analytics Dashboard",
+          "tool": "Analytics & Reports App",
+          "role": "Computes savings rate (savings / total_income * 100), aggregate spend by category, and generates reports.",
+          "input": "Aggregated Analytics",
+          "output": "Interactive Web UI & Reports",
+          "subNodes": [
+            "Savings Rate Algorithm",
+            "Category Breakdown Sums",
+            "Monthly Expense Analytics",
+            "Exportable PDF/CSV Reports"
+          ]
+        }
+      ]
+    }
   },
   {
     "key": 2,
-    "title": "Blog Website",
-    "imageSrc": "https://www.hostgator.com/blog/wp-content/uploads/2018/10/Best-Website-Builder-for-Blogging.png",
-    "description": "This is a project made with complete django and jinga templates.",
-    "demo": "https://blogweb-hs4a.onrender.com",
-    "source": "https://github.com/Shantanu7171/blogweb"
+    "title": "Smart College Resource Sharing Platform",
+    "category": "Full Stack Web",
+    "imageSrc": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80",
+    "description": "Full-stack academic resource platform enabling students to upload, search, and review course materials with role-based access control. Features Django REST Framework APIs, JWT authentication, Cloudinary storage, and gamified engagement leaderboards.",
+    "tags": ["Django", "DRF", "JWT", "PostgreSQL", "Cloudinary", "Jinja"],
+    "demo": "https://smartshare-1-se34.onrender.com/",
+    "source": "https://github.com/Shantanu7171/SmartShare",
+    "architecture": {
+      "summary": "Role-based academic collaboration platform: Secure JWT gateway, paginated REST APIs, Cloudinary CDN distribution, and gamified ranking logic.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Dual-Role Authentication",
+          "tool": "JWT & Django Auth",
+          "role": "Enforces Role-Based Access Control for Students, Faculty, and Admins with JWT tokens and OTP password reset.",
+          "input": "User Credentials & OTP",
+          "output": "Authenticated Request Context",
+          "subNodes": [
+            "Student / Faculty Roles",
+            "JWT Token Auth",
+            "Session Middleware",
+            "OTP Password Reset"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Academic Resource Engine",
+          "tool": "Django Resources App",
+          "role": "Manages course notes, question papers (PYQs), and presentations filtered by Branch (CSE, IT, ECE, MECH, CIVIL) and Semester.",
+          "input": "Query Parameters (Branch, Sem)",
+          "output": "Structured Resource Payload",
+          "subNodes": [
+            "Branch & Semester Filters",
+            "PDF / PPT / PYQ Documents",
+            "CSE, IT, ECE Categorization",
+            "Moderator Approval Workflow"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Cloud Media Distribution",
+          "tool": "Cloudinary CDN",
+          "role": "Direct PDF & document upload pipeline with automatic compression and global edge CDN caching.",
+          "input": "Uploaded PDF / Docs",
+          "output": "Secure CDN Content URL",
+          "subNodes": [
+            "Cloudinary Media Cloud",
+            "Direct PDF Ingestion",
+            "Global Edge CDN Delivery",
+            "Fast Document Streaming"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Relational Data Layer",
+          "tool": "PostgreSQL",
+          "role": "Maintains ACID relational schema for user uploads, course bookmarks, ratings, and peer reviews.",
+          "input": "Resource Metadata & Votes",
+          "output": "ACID Database State",
+          "subNodes": [
+            "PostgreSQL 15+ Schema",
+            "Resource Relational Models",
+            "User Foreign Key Cascades",
+            "Reviews & Upvote Counters"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Engagement & Community",
+          "tool": "Karma & Peer Lounge",
+          "role": "Peer Lounge chat communication, contributor karma score computation, student leaderboards, and AI quiz generation.",
+          "input": "Vote Signals & Upload Activity",
+          "output": "Real-time Leaderboard Rankings",
+          "subNodes": [
+            "Peer Lounge Chat",
+            "Contributor Karma Score",
+            "Student Leaderboard Rank",
+            "AI Quiz Generator App"
+          ]
+        }
+      ]
+    }
   },
   {
     "key": 3,
-    "title": "Finance Analyzer",
-    "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi0sK-b7Jqt2aRAA1cEyvCTsJdb4BrIOQFHA&s",
-    "description": "AI-based system to analyze expenses and provide financial insights",
-    "demo": "https://finance-analyzer-9x58.onrender.com/",
-    "source": "https://github.com/Shantanu7171/Finance_Analyzer"
+    "title": "Real-Time Stock Market Data Pipeline",
+    "category": "Data Engineering",
+    "imageSrc": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=700&q=80",
+    "description": "End-to-end distributed data engineering pipeline ingesting real-time stock market data with Apache Kafka. MinIO object storage for data lake layers, automated ingestion into Snowflake using Airflow DAGs, and dbt analytics transformation containerized with Docker.",
+    "tags": ["Apache Kafka", "Snowflake", "Apache Airflow", "MinIO", "dbt", "Docker"],
+    "demo": "https://github.com/Shantanu7171/real-time-stock-data-pipeline",
+    "source": "https://github.com/Shantanu7171/real-time-stock-data-pipeline",
+    "architecture": {
+      "summary": "Distributed streaming data lakehouse: High-throughput Kafka ingestion, MinIO Bronze lake, Airflow orchestration, and dbt analytics in Snowflake.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Finnhub Market Stream",
+          "tool": "Finnhub API & Requests",
+          "role": "Polls real-time financial market quotes for AAPL, MSFT, TSLA, GOOGL, and AMZN via Finnhub REST API.",
+          "input": "Finnhub Live Quote API",
+          "output": "Live Market Quote Payload",
+          "subNodes": [
+            "Finnhub Quote REST API",
+            "AAPL, MSFT, TSLA, GOOGL Ticks",
+            "Live Price & Volume Payload",
+            "Python Producer Daemon"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Message Streaming Queue",
+          "tool": "Apache Kafka (Port: 29092)",
+          "role": "KafkaProducer serializes quotes into JSON and streams them to the partitioned stock_topic queue.",
+          "input": "Quote JSON Dictionaries",
+          "output": "Kafka Event Stream in stock_topic",
+          "subNodes": [
+            "KafkaProducer Service",
+            "Broker: localhost:29092",
+            "JSON Value Serializer",
+            "Topic: stock_topic"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Bronze Lake Object Store",
+          "tool": "MinIO S3 (bronze-transactions)",
+          "role": "Consumer daemon reads messages from stock_topic and writes immutable raw JSON batches to MinIO object storage.",
+          "input": "Kafka Stream Batches",
+          "output": "Raw MinIO JSON Lake Objects",
+          "subNodes": [
+            "MinIO S3 Object Store",
+            "Bucket: bronze-transactions",
+            "boto3 Object Uploads",
+            "Raw Immutable Tick Batches"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Pipeline Orchestration",
+          "tool": "Apache Airflow (DAG)",
+          "role": "DAG minio_to_snowflake downloads objects from MinIO and stages them for Snowflake loading with auto-retries.",
+          "input": "MinIO Object Batches",
+          "output": "Automated DAG Execution & Task Logs",
+          "subNodes": [
+            "DAG: minio_to_snowflake",
+            "PythonOperator Scheduler",
+            "Auto-Retry & Alert Hooks",
+            "Local Temp Staging Buffer"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Cloud Data Warehousing",
+          "tool": "Snowflake",
+          "role": "Loads structured stock market data into landing stage tables using snowflake.connector in scalable virtual warehouses.",
+          "input": "Staged Object Batches",
+          "output": "Snowflake Staging Tables",
+          "subNodes": [
+            "snowflake.connector Client",
+            "Scalable Virtual Warehouse",
+            "Landing Stage Tables",
+            "High-Throughput Ingestion"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "Analytics & Visualization",
+          "tool": "dbt & Streamlit",
+          "role": "dbt transforms raw data into Silver/Gold models (moving averages, volatility), visualized in real-time via dashboard/app.py.",
+          "input": "Snowflake Staging Tables",
+          "output": "Analytics Gold Models & Dashboard",
+          "subNodes": [
+            "dbt_stocks Core Models",
+            "Silver Cleansed Views",
+            "Gold 50/200 DMA Analytics",
+            "dashboard/app.py UI"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": 4,
+    "title": "Large-Scale Taxi Data Pipeline",
+    "category": "Data Engineering & Analytics",
+    "imageSrc": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80",
+    "description": "Scalable NYC Yellow Taxi data pipeline ingesting streams via Kafka into MinIO Bronze/Silver storage tiers. High-performance data transformation with Polars, orchestrated via Apache Airflow, analytics in Snowflake, and interactive Streamlit visualization dashboard.",
+    "tags": ["Kafka", "MinIO", "Snowflake", "Polars", "Airflow", "Streamlit"],
+    "demo": "https://nyc-taxi-data-pipeline.streamlit.app/",
+    "source": "https://github.com/Shantanu7171/large-scale-taxi-data-pipeline",
+    "architecture": {
+      "summary": "Lakehouse ETL & Visualization: Kafka event streaming, MinIO tiered storage, Polars vectorized transformations, Snowflake data warehouse, and Streamlit UI.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Taxi Stream Ingestion",
+          "tool": "Apache Kafka (Producer/Consumer)",
+          "role": "Streams millions of NYC Yellow Taxi trip records through high-throughput Kafka topics with backpressure handling.",
+          "input": "NYC Yellow Taxi Trip Records",
+          "output": "High-Throughput Kafka Stream",
+          "subNodes": [
+            "NYC Taxi Trip Parquet Stream",
+            "Kafka Producer Batching",
+            "Multi-Partition Topics",
+            "Kafka Consumer Ingestion"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Bronze Lake Storage",
+          "tool": "MinIO (taxi-bronze)",
+          "role": "Stores raw streaming taxi event logs in MinIO taxi-bronze bucket partitioned by year and month.",
+          "input": "Ingested Kafka Stream",
+          "output": "taxi-bronze JSONL Objects",
+          "subNodes": [
+            "MinIO S3 Service (:9000)",
+            "Bucket: taxi-bronze",
+            "Raw JSONL Record Format",
+            "Year/Month Partitioning"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Vectorized ETL Processing",
+          "tool": "Polars (Rust Engine)",
+          "role": "bronze_to_silver.py runs in-memory Polars transformations: trip duration, tip percentage, and rate code mapping.",
+          "input": "Raw JSONL Data",
+          "output": "Enriched Feature-Engineered Data",
+          "subNodes": [
+            "Polars DataFrame (pl)",
+            "Zero-Copy SIMD Speed",
+            "Trip & Fare Feature Eng",
+            "NYC Spatial Zone Clean"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Silver Tier Storage",
+          "tool": "MinIO (taxi-silver)",
+          "role": "Persists transformed taxi data as Snappy-compressed columnar Parquet files into taxi-silver bucket.",
+          "input": "Transformed Polars DataFrames",
+          "output": "taxi-silver Parquet Partitions",
+          "subNodes": [
+            "Bucket: taxi-silver",
+            "Columnar Parquet Format",
+            "Snappy Compression Ratio",
+            "Optimized File Splits"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Cloud Warehouse Loading",
+          "tool": "Airflow DAG & Snowflake",
+          "role": "Airflow DAG taxi_bronze_to_silver orchestrates pipeline execution and triggers load_silver.py into Snowflake.",
+          "input": "Silver Parquet Partitions",
+          "output": "Snowflake Analytical Tables",
+          "subNodes": [
+            "DAG: taxi_bronze_to_silver",
+            "load_silver.py Snowflake Job",
+            "Analytics Gold Tables",
+            "High-Concurrency SQL Engine"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "Live Analytics Dashboard",
+          "tool": "Streamlit Cloud",
+          "role": "Connects live to Snowflake, rendering geospatial hotspot heatmaps, trip duration trends, and fare distributions.",
+          "input": "Snowflake SQL Queries",
+          "output": "Live Web Analytics Dashboard",
+          "subNodes": [
+            "streamlit_app/app.py",
+            "Geospatial Heatmap Visuals",
+            "queries.py KPI Aggregates",
+            "Low-Latency Cache Layer"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": 5,
+    "title": "React Recipe Application",
+    "category": "Frontend Development",
+    "imageSrc": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80",
+    "description": "Interactive recipe discovery single-page web app engineered with React.js and the Mealdb REST API. Features real-time dish searching, cuisine filtering, responsive card grid layouts, and ingredient breakdowns.",
+    "tags": ["React.js", "REST API", "JavaScript", "Responsive UI"],
+    "demo": "https://food-app-1r6i.vercel.app/",
+    "source": "https://github.com/Shantanu7171/Food_app",
+    "architecture": {
+      "summary": "Component-driven single page application: React state machine, asynchronous REST integration, responsive CSS grid, and modal detail rendering.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "User Query & Filter Input",
+          "tool": "React Controlled State",
+          "role": "Captures user search ingredient inputs and cuisine area filter clicks in reactive state.",
+          "input": "User Keystrokes & Area Clicks",
+          "output": "Active Filter State",
+          "subNodes": [
+            "area & ingredient State",
+            "Cuisine Filter Buttons",
+            "Real-Time Search Input",
+            "Form Submit Handler"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Asynchronous REST Queries",
+          "tool": "TheMealDB API & Fetch",
+          "role": "Fetches recipes from TheMealDB endpoints filter.php?a={area} and search.php?s={ingredient}.",
+          "input": "Area & Ingredient Query Strings",
+          "output": "Raw Recipe JSON Payload",
+          "subNodes": [
+            "fetch() Asynchronous Calls",
+            "filter.php?a= Cuisine API",
+            "search.php?s= Search API",
+            "JSON Response Parsing"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "State Management & Hydration",
+          "tool": "React useEffect Hook",
+          "role": "Hydrates mealdata state inside useEffect([area]) and triggers re-renders on filter changes.",
+          "input": "Parsed Meal JSON Array",
+          "output": "Hydrated mealdata State",
+          "subNodes": [
+            "setmealdata() Hook",
+            "Dependency Array [area]",
+            "Loading State Management",
+            "Clean Recipe Arrays"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Responsive Card Grid",
+          "tool": "React Virtual DOM",
+          "role": "Maps over mealdata array to render recipe cards with strMealThumb images and responsive flex/grid layouts.",
+          "input": "mealdata Array",
+          "output": "60fps Responsive Recipe Grid",
+          "subNodes": [
+            "strMealThumb Image Render",
+            "Dish Title Mapping",
+            "CSS Flex / Grid Layout",
+            "Interactive Card Hovers"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": 6,
+    "title": "Dynamic Blog & Content Platform",
+    "category": "Full Stack Web",
+    "imageSrc": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=80",
+    "description": "Full-featured blogging and microblog platform built with Django and Jinja templates. Includes full CRUD post publishing, custom form handling, admin panel management, and media optimization for fast image delivery.",
+    "tags": ["Django", "Jinja Templates", "PostgreSQL", "Bootstrap"],
+    "demo": "https://blogweb-hs4a.onrender.com",
+    "source": "https://github.com/Shantanu7171/blogweb",
+    "architecture": {
+      "summary": "Server-Side Rendered (SSR) Publishing Architecture: Django MVC engine, Cloudinary media CDN, database CRUD, and Jinja template compilation.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Authentication & Permissions",
+          "tool": "Django Auth & Forms",
+          "role": "UserRegistrationForm handles signups, while @login_required decorator protects publishing endpoints.",
+          "input": "User Credentials & Sessions",
+          "output": "Authenticated Request Context",
+          "subNodes": [
+            "UserRegistrationForm",
+            "@login_required Decorator",
+            "User Session Context",
+            "Owner-Only Authorization"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Post Authoring & Media Upload",
+          "tool": "Django Forms & Media",
+          "role": "tweetForm validates post text (max 250 chars) and handles image uploads via ImageField upload_to='photo/'.",
+          "input": "Post Text & Image File",
+          "output": "Validated Post Form Data",
+          "subNodes": [
+            "tweetForm Handling",
+            "ImageField Upload Pipeline",
+            "request.FILES Processing",
+            "Text Length (250) Validation"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Database Persistence (CRUD)",
+          "tool": "PostgreSQL / SQLite ORM",
+          "role": "Persists Tweet model instances with ForeignKey to User, created_at, and updated_at timestamps.",
+          "input": "Post Model Instance",
+          "output": "Persisted Relational Record",
+          "subNodes": [
+            "Tweet Model Schema",
+            "User Foreign Key Cascade",
+            "created_at Timestamp Index",
+            "Full CRUD Operations"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Server-Side Template Compilation",
+          "tool": "Django Templates (SSR)",
+          "role": "Tweet_List compiles tweet_list.html on the server using distinct querysets for fast initial page load.",
+          "input": "Database Tweet QuerySet",
+          "output": "Fast Server-Rendered HTML",
+          "subNodes": [
+            "Tweet_List Distinct Query",
+            "tweet_list.html Template",
+            "Dynamic Card Loops",
+            "Fast HTML Delivery"
+          ]
+        }
+      ]
+    }
   }
 ]

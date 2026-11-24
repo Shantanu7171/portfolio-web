@@ -1,58 +1,176 @@
-import React from "react";
-import project from "./data/projects.json";
+import React, { useState } from "react";
+import projectsData from "./data/projects.json";
+import ArchitectureModal from "./ArchitectureModal";
+import {
+  FaExternalLinkAlt,
+  FaGithub,
+  FaLayerGroup,
+  FaNetworkWired
+} from "react-icons/fa";
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedArchProject, setSelectedArchProject] = useState(null);
+
+  const categories = [
+    "All",
+    "Full Stack Web",
+    "Data Engineering",
+    "Frontend Development"
+  ];
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projectsData
+      : projectsData.filter((p) =>
+          p.category?.toLowerCase().includes(activeFilter.toLowerCase())
+        );
+
   return (
-    <>
-      <div className="container projects my-3" id="projects">
-        <h1>PROJECTS</h1>
-        <div className="row d-flex justify-content-center align-content-center">
-          {project.map((data) => (
-            <>
-              <div
-                key={data.id}
-                className="my-4 col-sm-6 col-md-4 col-lg-3 mx-4"
+    <section className="section-wrapper projects-section" id="projects">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header text-center" data-aos="fade-up">
+          <span className="section-subtitle">FEATURED PORTFOLIO WORK</span>
+          <h2 className="section-title">
+            Featured <span className="text-gradient">Projects</span>
+          </h2>
+          <p className="section-desc">
+            Full-stack web applications, distributed data engineering pipelines, and
+            AI-driven systems engineered by Shantanu.
+          </p>
+
+          {/* Filter Pills */}
+          <div className="project-filter-row" data-aos="fade-up" data-aos-delay="100">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`filter-btn ${activeFilter === cat ? "active" : ""}`}
+                onClick={() => setActiveFilter(cat)}
               >
-                <div
-                  className="card bg-dark text-light"
-                  style={{
-                    width: "18rem",
-                    border: "1px solid yellow",
-                    boxShadow: "5px 5px 10px 10px rgba(101, 175, 10, 0.5)",
-                  }}
-                  data-aos="flip-right"
-                  data-aos-duration="1000"
-                >
-                  <div className="img d-flex justify-content-center align-content-center p-3">
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 3D Project Cards Grid */}
+        <div className="projects-grid">
+          {filteredProjects.map((project, idx) => {
+            const tags = project.tags || [project.category || "Full Stack"];
+
+            return (
+              <div
+                key={project.key || idx}
+                className="project-card-3d"
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
+                data-aos-duration="800"
+              >
+                <div className="card-border-glow" />
+                <div className="project-card-inner">
+                  {/* Image Cover Preview */}
+                  <div className="project-image-box">
                     <img
-                      src={data.imageSrc}
-                      className="card-img-top"
-                      alt="..."
-                      style={{
-                        width: "250px",
-                        height: "200px",
-                        border: "2px solid yellow",
-                        borderRadius: "10px",
+                      src={project.imageSrc}
+                      alt={project.title}
+                      className="project-image"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80";
                       }}
                     />
+                    <div className="image-overlay" />
+                    <div className="image-badge">
+                      <FaLayerGroup /> {project.category || "Engineering"}
+                    </div>
                   </div>
-                  <div className="card-body text-center">
-                    <h5 className="card-title">{data.title}</h5>
-                    <p className="card-text">{data.description}</p>
-                    <a href={data.demo} className="btn btn-primary mx-3">
-                      Demo
-                    </a>
-                    <a href={data.source} className="btn btn-warning">
-                      Code
-                    </a>
+
+                  {/* Card Body */}
+                  <div className="project-body">
+                    {/* Tags */}
+                    <div className="project-tags">
+                      {tags.map((tag, tIdx) => (
+                        <span key={tIdx} className="tag-pill">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-desc">{project.description}</p>
+
+                    {/* Architecture & Data Flow Trigger Button */}
+                    {project.architecture && (
+                      <button
+                        type="button"
+                        className="btn-arch-flow"
+                        onClick={() => setSelectedArchProject(project)}
+                        title="View Real System Architecture & Data Flow"
+                      >
+                        <FaNetworkWired className="arch-btn-icon" />
+                        <span>⚡ System Architecture &amp; Data Flow</span>
+                      </button>
+                    )}
+
+                    {/* Action Buttons */}
+                    <div className="project-actions">
+                      {project.demo && project.demo === project.source ? (
+                        <a
+                          href={project.source}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-project btn-demo"
+                        >
+                          <FaGithub className="action-icon" />
+                          <span>Pipeline Repo &amp; Architecture</span>
+                        </a>
+                      ) : (
+                        <>
+                          {project.demo && (
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="btn-project btn-demo"
+                            >
+                              <span>Live Demo</span>
+                              <FaExternalLinkAlt className="action-icon" />
+                            </a>
+                          )}
+
+                          {project.source && (
+                            <a
+                              href={project.source}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="btn-project btn-source"
+                            >
+                              <FaGithub className="action-icon" />
+                              <span>Code</span>
+                            </a>
+                          )}
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </>
-          ))}
+            );
+          })}
         </div>
       </div>
-    </>
+
+      {/* Interactive System Architecture & Data Flow Modal */}
+      <ArchitectureModal
+        isOpen={Boolean(selectedArchProject)}
+        project={selectedArchProject}
+        allProjects={projectsData}
+        onClose={() => setSelectedArchProject(null)}
+        onSelectProject={(proj) => setSelectedArchProject(proj)}
+      />
+    </section>
   );
 };
 

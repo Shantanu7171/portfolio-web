@@ -1,26 +1,110 @@
 [
   {
-    "title": "HTML",
-    "imageSrc": "skills/html.png"
+    "id": 1,
+    "title": "Apache Kafka",
+    "category": "Data Engineering",
+    "iconType": "kafka",
+    "level": "Proficient",
+    "proficiency": 88,
+    "description": "High-throughput distributed event streaming, real-time message brokering, and pipeline ingestion."
   },
   {
-    "title": "CSS",
-    "imageSrc": "skills/css.png"
+    "id": 2,
+    "title": "Apache Airflow",
+    "category": "Data Engineering",
+    "iconType": "airflow",
+    "level": "Proficient",
+    "proficiency": 85,
+    "description": "Automated workflow orchestration, DAG creation, task scheduling, and pipeline monitoring."
   },
   {
-    "title": "JavaScript",
-    "imageSrc": "skills/javascript.png"
+    "id": 3,
+    "title": "Snowflake",
+    "category": "Data Engineering",
+    "iconType": "snowflake",
+    "level": "Proficient",
+    "proficiency": 86,
+    "description": "Cloud data warehousing, SQL analytics, columnar storage, and analytics-ready dataset modeling."
   },
   {
-    "title": "React",
-    "imageSrc": "skills/react.png"
+    "id": 4,
+    "title": "Pandas & NumPy",
+    "category": "Data Analysis",
+    "iconType": "pandas",
+    "level": "Advanced",
+    "proficiency": 92,
+    "description": "Data wrangling, cleansing, exploratory analysis, vectorization, and financial transaction processing."
   },
   {
+    "id": 5,
+    "title": "PostgreSQL",
+    "category": "Databases & Backend",
+    "iconType": "postgresql",
+    "level": "Advanced",
+    "proficiency": 90,
+    "description": "Relational database modeling, complex joins, indexing, query optimization, and transaction handling."
+  },
+  {
+    "id": 6,
+    "title": "Docker",
+    "category": "Data Engineering & DevOps",
+    "iconType": "docker",
+    "level": "Proficient",
+    "proficiency": 84,
+    "description": "Containerizing microservices, orchestrating multi-container data pipelines, and isolated deployments."
+  },
+  {
+    "id": 7,
+    "title": "dbt (Data Build Tool)",
+    "category": "Data Engineering",
+    "iconType": "dbt",
+    "level": "Proficient",
+    "proficiency": 82,
+    "description": "Modular SQL transformations, testing, documentation, and analytics engineering inside Snowflake."
+  },
+  {
+    "id": 8,
     "title": "Python",
-    "imageSrc": "skills/python.png"
+    "category": "Backend & Core",
+    "imageSrc": "skills/python.png",
+    "level": "Advanced",
+    "proficiency": 95,
+    "description": "Object-oriented programming, data structures, script automation, and full-stack development."
   },
   {
-    "title": "Django",
-    "imageSrc": "skills/django.png"
+    "id": 9,
+    "title": "Django & DRF",
+    "category": "Backend & Core",
+    "imageSrc": "skills/django.png",
+    "level": "Advanced",
+    "proficiency": 92,
+    "description": "Enterprise web frameworks, REST APIs, ORM mapping, JWT authentication, and security middleware."
+  },
+  {
+    "id": 10,
+    "title": "React.js",
+    "category": "Frontend Framework",
+    "imageSrc": "skills/react.png",
+    "level": "Proficient",
+    "proficiency": 88,
+    "description": "Interactive component-driven UI, state management, hooks, and modern single-page architecture."
+  },
+  {
+    "id": 11,
+    "title": "JavaScript",
+    "category": "Frontend Framework",
+    "imageSrc": "skills/javascript.png",
+    "level": "Proficient",
+    "proficiency": 86,
+    "description": "Modern ES6+ syntax, asynchronous programming, fetch/axios APIs, and DOM manipulation."
+  },
+  {
+    "id": 12,
+    "title": "HTML5 & CSS3",
+    "category": "Web Fundamentals",
+    "imageSrc": "skills/html.png",
+    "level": "Mastery",
+    "proficiency": 94,
+    "description": "Semantic markup, responsive layouts, flexbox, CSS grid, and modern design systems."
   }
 ]

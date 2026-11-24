@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Django Skill Up Certification",
+    "issuer": "GeeksforGeeks (GFG Nation Skillup)",
+    "date": "January 2026",
+    "credentialUrl": "https://www.geeksforgeeks.org/certificate/7ebaf0b8fb9a297a7192d315c943aaa8?utm_source=socials&utm_medium=cc_link",
+    "pdfUrl": "https://media.geeksforgeeks.org/courses/certificates/7ebaf0b8fb9a297a7192d315c943aaa8.pdf",
+    "certificateId": "88509",
+    "status": "Verified Credential • ID: 88509",
+    "description": "Official GeeksforGeeks certification validating hands-on expertise in full-stack Django architecture, ORM database modeling, user authentication, class-based views, and REST API development.",
+    "skills": ["Django", "Python", "Django ORM", "REST APIs", "Backend Architecture"]
+  },
+  {
+    "id": 2,
+    "title": "Data Structures & Algorithms",
+    "issuer": "LeetCode & GeeksforGeeks",
+    "date": "Active Problem Solver",
+    "credentialUrl": "https://leetcode.com/u/Shantanu77/",
+    "gfgUrl": "https://www.geeksforgeeks.org/profile/shantanu77",
+    "status": "Competitive Programming",
+    "description": "Actively solving algorithmic challenges across LeetCode and GeeksforGeeks, mastering Data Structures, Algorithms, Dynamic Programming, and Time-Space complexity optimization.",
+    "skills": ["Data Structures", "Algorithms", "LeetCode", "GeeksforGeeks", "C++ / Python", "Problem Solving"]
+  },
+  {
+    "id": 3,
+    "title": "AS/400 Enterprise System Training",
+    "issuer": "One Smarter Inc.",
+    "date": "2024",
+    "credentialUrl": "",
+    "status": "Industry Training",
+    "description": "Completed practical hands-on industry training in the AS/400 (IBM i) enterprise environment, mastering DDS, Subfiles, database operations, and legacy business workflows.",
+    "skills": ["AS/400", "IBM i", "DDS", "Subfiles", "Enterprise Database Handling"]
+  }
+]
