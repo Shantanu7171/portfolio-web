@@ -14,7 +14,7 @@ import {
   SiJavascript,
   SiHtml5,
 } from "react-icons/si";
-import { FaDatabase } from "react-icons/fa";
+import { FaDatabase, FaJava, FaCode } from "react-icons/fa";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -38,6 +38,10 @@ const Skills = () => {
         return <SiPandas className="skill-react-icon icon-pandas" />;
       case "dbt":
         return <SiDbt className="skill-react-icon icon-dbt" />;
+      case "java":
+        return <FaJava className="skill-react-icon icon-java" />;
+      case "java-dsa":
+        return <FaCode className="skill-react-icon icon-java-dsa" />;
       default:
         break;
     }

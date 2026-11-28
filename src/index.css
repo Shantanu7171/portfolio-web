@@ -993,6 +993,8 @@ img {
 .icon-docker { color: #38bdf8; }
 .icon-pandas { color: #a5b4fc; }
 .icon-dbt { color: #ff694b; }
+.icon-java { color: #f89820; }
+.icon-java-dsa { color: #e76f51; }
 
 .skill-desc-text {
   font-size: 0.86rem;
