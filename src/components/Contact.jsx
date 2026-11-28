@@ -84,28 +84,67 @@ const Contact = () => {
     setStatus({ submitting: true, success: false, error: null, message: "" });
 
     try {
-      // Send to backend API (proxied in Vite or direct)
-      const apiUrl = import.meta.env.VITE_API_URL || "/api";
-      const response = await fetch(`${apiUrl}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      let sentSuccessfully = false;
+      let responseMessage = "";
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        let msg = data.message || "Thank you! Your message has been received.";
-        if (data.devMode) {
-          msg += " [Dev Mode: Server received your message in terminal. To receive real emails in your Gmail inbox, add your Gmail App Password in server/.env]";
+      // 1. If custom backend URL is configured, try it first
+      const apiUrl = import.meta.env.VITE_API_URL;
+      if (apiUrl) {
+        try {
+          const response = await fetch(`${apiUrl}/contact`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+          const data = await response.json();
+          if (response.ok && data.success) {
+            sentSuccessfully = true;
+            responseMessage = data.message || "Thank you! Your message has been received.";
+          }
+        } catch (backendErr) {
+          console.warn("Custom backend not reached, trying direct email delivery:", backendErr);
         }
+      }
+
+      // 2. Direct FormSubmit AJAX delivery (Zero server needed, sends directly to shantanudhabale777@gmail.com)
+      if (!sentSuccessfully) {
+        const formSubmitRes = await fetch("https://formsubmit.co/ajax/shantanudhabale777@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            _subject: formData.subject ? `[Portfolio] ${formData.subject}` : `New message from ${formData.name}`,
+            message: formData.message,
+            _template: "table",
+            _captcha: "false",
+          }),
+        });
+
+        const fsData = await formSubmitRes.json();
+        if (formSubmitRes.ok && (fsData.success === "true" || fsData.success === true)) {
+          sentSuccessfully = true;
+          responseMessage = "Thank you! Your message has been sent directly to Shantanu's inbox.";
+        } else if (fsData.message && fsData.message.includes("Activation")) {
+          // If first-time activation confirmation is dispatched
+          sentSuccessfully = true;
+          responseMessage = "Thank you! Your message was dispatched. (Form confirmation sent to Shantanu's inbox).";
+        } else {
+          throw new Error(fsData.message || "Direct gateway delivery failed.");
+        }
+      }
+
+      if (sentSuccessfully) {
         setStatus({
           submitting: false,
           success: true,
           error: null,
-          message: msg,
+          message: responseMessage,
         });
         setFormData({
           name: "",
@@ -115,24 +154,14 @@ const Contact = () => {
           _honeypot: "",
         });
         triggerConfetti();
-      } else {
-        setStatus({
-          submitting: false,
-          success: false,
-          error:
-            data.message ||
-            "Failed to send message. Please email directly to shantanudhabale777@gmail.com",
-          message: "",
-        });
       }
     } catch (err) {
-      console.warn("Backend server not reached:", err);
-      // Fallback message with direct mailto option
+      console.warn("Contact delivery error:", err);
       setStatus({
         submitting: false,
         success: false,
         error:
-          "Could not connect to contact server. You can email me directly at shantanudhabale777@gmail.com",
+          "Could not deliver automatically. You can email directly to shantanudhabale777@gmail.com or click below:",
         message: "",
       });
     }
@@ -311,6 +340,16 @@ const Contact = () => {
                   <div>
                     <strong>Note:</strong>
                     <p>{status.error}</p>
+                    <a
+                      href={`mailto:shantanudhabale777@gmail.com?subject=${encodeURIComponent(
+                        formData.subject || `Inquiry from ${formData.name || "Portfolio Visitor"}`
+                      )}&body=${encodeURIComponent(
+                        `Hi Shantanu,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+                      )}`}
+                      className="btn-mailto-fallback"
+                    >
+                      ✉️ Open in Gmail / Email App
+                    </a>
                   </div>
                 </div>
               )}

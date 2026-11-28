@@ -14,8 +14,9 @@ const Projects = () => {
 
   const categories = [
     "All",
-    "Full Stack Web",
     "Data Engineering",
+    "AI & Agents",
+    "Full Stack Web",
     "Frontend Development"
   ];
 

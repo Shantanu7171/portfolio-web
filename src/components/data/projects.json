@@ -1,11 +1,231 @@
 [
   {
     "key": 1,
+    "title": "Bharat AQI Lakehouse",
+    "category": "Data Engineering",
+    "imageSrc": "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&w=800&q=80",
+    "description": "Enterprise-grade Medallion Lakehouse monitoring real-time air quality & meteorology across 20 major Indian municipal hubs. Orchestrates hourly batch ETL via Apache Airflow 2.10, PySpark silver normalization, dbt Core dimensional modeling, Great Expectations quality contracts, MinIO S3 object storage, and a Streamlit executive intelligence dashboard.",
+    "tags": [
+      "Apache Airflow",
+      "PySpark",
+      "dbt Core",
+      "MinIO S3",
+      "PostgreSQL",
+      "Docker",
+      "Streamlit",
+      "Python"
+    ],
+    "demo": "https://github.com/Shantanu7171/Bharat-AQI-Lakehouse#readme",
+    "source": "https://github.com/Shantanu7171/Bharat-AQI-Lakehouse",
+    "architecture": {
+      "summary": "Decoupled Medallion Lakehouse architecture: hourly REST extraction -> MinIO Bronze JSON audit landing -> PySpark distributed normalization -> Great Expectations validation -> Idempotent PostgreSQL upsert -> dbt Core dimensional analytics.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Multi-City Telemetry Ingestion",
+          "tool": "Apache Airflow 2.10.5 & Open-Meteo REST API",
+          "role": "Orchestrates concurrent hourly extraction of 8 atmospheric pollutants and 5 surface meteorological variables across 20 Indian cities using Airflow Dynamic Task Mapping.",
+          "input": "20 Indian Municipal Geocoordinates (Lat/Lon)",
+          "output": "Raw Hourly Environmental Payloads",
+          "subNodes": [
+            "Airflow Hourly DAG (Dynamic Task Mapping)",
+            "Open-Meteo Air Quality & Weather API",
+            "CPCB 20 Municipalities Configuration",
+            "Synchronized Telemetry Extractor"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Bronze Layer Immutable Landing",
+          "tool": "MinIO S3 Object Storage",
+          "role": "Stores raw immutable JSON payloads in partitioned paths (/bronze/aqi/year=YYYY/month=MM/day=DD/hour=HH/city=CITY), ensuring zero audit trail loss.",
+          "input": "Extracted JSON Payloads",
+          "output": "Partitioned MinIO S3 Raw Storage",
+          "subNodes": [
+            "MinIO S3 Buckets",
+            "Hive-style Date Partitioning",
+            "Immutable Raw Audit Store",
+            "Reprocessing Source of Truth"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "PySpark Silver Distributed Normalization",
+          "tool": "Apache PySpark 3.5.4 (S3A Connector)",
+          "role": "Flattens nested JSON arrays, normalizes dual timestamps (UTC and IST UTC+05:30), casts sensor float types, and writes Snappy-compressed Parquet.",
+          "input": "MinIO S3 Bronze JSON Files",
+          "output": "Validated Silver Parquet & Staging DataFrames",
+          "subNodes": [
+            "PySpark DataFrame Transformations",
+            "Dual-Zone Timestamp Casting (UTC/IST)",
+            "Snappy-compressed Parquet Write",
+            "S3A Hadoop Filesystem Gateway"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "In-Pipeline Quality Gatekeeping",
+          "tool": "Great Expectations 1.3",
+          "role": "Executes automated validation suite: checks non-null primary keys, valid coordinate bounds, pollutant range thresholds (0-1000 ug/m3), halting pipeline on anomalies.",
+          "input": "Silver Normalized Records",
+          "output": "Certified Quality-Passed Dataset",
+          "subNodes": [
+            "GE Expectation Suite Checkpoint",
+            "ExpectColumnValuesToBeBetween Rules",
+            "Zero Null-Tolerance Assertion",
+            "Data Quality Gatekeeper"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Idempotent Warehouse Merge",
+          "tool": "PostgreSQL 16 & Atomic Merge Staging",
+          "role": "Executes atomic merge upsert with ON CONFLICT (city_name, timestamp_utc) DO UPDATE, guaranteeing zero duplicate records during retries or backfills.",
+          "input": "Quality Certified Silver Data",
+          "output": "Idempotent PostgreSQL Silver Schema",
+          "subNodes": [
+            "Atomic ON CONFLICT DO UPDATE",
+            "Composite Primary Key Index",
+            "Staging Table Swap Pattern",
+            "Multi-Month Backfill Idempotency"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "dbt Star Schema & Executive Intelligence",
+          "tool": "dbt Core 1.9.4 & Streamlit 1.42.0",
+          "role": "Transforms silver data into conformed star schema (dim_city, fct_air_quality_hourly, city_daily_aqi) serving interactive Streamlit analytics & Telegram alerts.",
+          "input": "Silver Relational Tables",
+          "output": "Gold Star Schema & Live Visual Insights",
+          "subNodes": [
+            "dbt Core Gold Transformations",
+            "CPCB National AQI Calculation Engine",
+            "Streamlit Geospatial Dashboard",
+            "Telegram Bot Automated Alerting (6h cooldown)"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": 2,
+    "title": "Inventra — Agentic Stockout Resolution",
+    "category": "AI & Agents",
+    "imageSrc": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+    "description": "Production agentic stockout-resolution system preventing warehouse shortages through evidence-based, human-in-the-loop replenishment. Architected with LangGraph, SQLite checkpointing, Pydantic validation, and 3 specialized LLM agents (Investigator, Sizer, Policy Reviewer) bounded by deterministic Python rules.",
+    "tags": [
+      "LangGraph",
+      "Python 3.13",
+      "SQLite",
+      "Pydantic",
+      "Streamlit",
+      "Gemini / Vertex AI"
+    ],
+    "demo": "https://github.com/Shantanu7171/Inventra-AI-Agent#readme",
+    "source": "https://github.com/Shantanu7171/Inventra-AI-Agent",
+    "architecture": {
+      "summary": "Human-in-the-loop Agentic workflow: LangGraph multi-agent graph with SQLite checkpoint state, deterministic Python bounds, policy compliance verification, and human approval interrupts.",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Warehouse Telemetry Ingestion",
+          "tool": "Domain Database & Schema Fixtures",
+          "role": "Gathers operational stock levels, safety thresholds, reorder points, and supplier lead times for candidate warehouse SKUs.",
+          "input": "SKU Identifier & Warehouse ID",
+          "output": "Structured Inventory Telemetry",
+          "subNodes": [
+            "SQLite Operational State",
+            "SKU Inventory Balance Query",
+            "Supplier Lead Time Lookup",
+            "Reorder Point Threshold Matrix"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "Investigator Agent & Evidence Gathering",
+          "tool": "Investigator LLM Agent & Deterministic Bounding",
+          "role": "Analyzes daily consumption variance, pending purchase orders, and stockout risk, corroborated by pure Python verification logic.",
+          "input": "Inventory Fact Records",
+          "output": "Investigative Stockout Risk Assessment",
+          "subNodes": [
+            "LangGraph Agent Node",
+            "Consumption Rate Trend Analysis",
+            "Deterministic Run-out Date Computation",
+            "Risk Score Bounding"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "Replenishment Sizer Agent",
+          "tool": "Order Sizer Agent & Economic Order Quantity",
+          "role": "Determines optimal replenishment quantity, MOQ compliance, batch increments, unit pricing, and estimated delivery dates.",
+          "input": "Validated Stockout Evidence",
+          "output": "Priced Replenishment Proposal",
+          "subNodes": [
+            "Economic Order Quantity (EOQ)",
+            "Supplier MOQ Enforcement",
+            "Pydantic Proposal Schema Model",
+            "Replenishment Timeline Estimation"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Policy & Compliance Verification",
+          "tool": "Policy Reviewer Agent & Hard Gatekeeper Rules",
+          "role": "Evaluates proposal against spend authorization matrices, single-supplier limits, and warehouse storage capacity constraints.",
+          "input": "Replenishment Proposal",
+          "output": "Compliance-Approved Order Package",
+          "subNodes": [
+            "Spend Limit Policy Rules",
+            "Approved Vendor Verification",
+            "Storage Volume Feasibility",
+            "Compliance Audit Log"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "Human-in-the-Loop Interrupt",
+          "tool": "LangGraph Checkpointer & Streamlit / Email UI",
+          "role": "Pauses stateful graph execution, dispatches approval notification to authorized procurement manager, and awaits human decision.",
+          "input": "Pending Replenishment Proposal",
+          "output": "Human Approval / Rejection Decision",
+          "subNodes": [
+            "LangGraph Graph Interrupt (breakpoint)",
+            "SQLite Checkpointed Session State",
+            "Streamlit Review Modal",
+            "Two-Factor Approval Audit Trail"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "Revalidation & Purchase Order Creation",
+          "tool": "Post-Approval Guardrails & ERP Connector",
+          "role": "Revalidates live inventory state to prevent race conditions, and deterministically generates finalized Purchase Order record.",
+          "input": "Human Approval Signature",
+          "output": "Committed Purchase Order (PO)",
+          "subNodes": [
+            "Pre-Commit State Invariant Verification",
+            "Deterministic Purchase Request Generator",
+            "Audit Trail Event Logging",
+            "ERP Integration Dispatch"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": 3,
     "title": "Finance Analyzer",
     "category": "Full Stack & AI",
     "imageSrc": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80",
     "description": "Web-based finance management system using Django and Jinja Templates. Processed bank statement CSVs using Pandas for automated transaction categorization, overspending detection, and subscription tracking with actionable financial reports.",
-    "tags": ["Django", "PostgreSQL", "Pandas", "Jinja Templates", "REST API"],
+    "tags": [
+      "Django",
+      "PostgreSQL",
+      "Pandas",
+      "Jinja Templates",
+      "REST API"
+    ],
     "demo": "https://finance-analyzer-9x58.onrender.com/",
     "source": "https://github.com/Shantanu7171/Finance_Analyzer",
     "architecture": {
@@ -99,12 +319,19 @@
     }
   },
   {
-    "key": 2,
+    "key": 4,
     "title": "Smart College Resource Sharing Platform",
     "category": "Full Stack Web",
     "imageSrc": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80",
     "description": "Full-stack academic resource platform enabling students to upload, search, and review course materials with role-based access control. Features Django REST Framework APIs, JWT authentication, Cloudinary storage, and gamified engagement leaderboards.",
-    "tags": ["Django", "DRF", "JWT", "PostgreSQL", "Cloudinary", "Jinja"],
+    "tags": [
+      "Django",
+      "DRF",
+      "JWT",
+      "PostgreSQL",
+      "Cloudinary",
+      "Jinja"
+    ],
     "demo": "https://smartshare-1-se34.onrender.com/",
     "source": "https://github.com/Shantanu7171/SmartShare",
     "architecture": {
@@ -184,12 +411,19 @@
     }
   },
   {
-    "key": 3,
+    "key": 5,
     "title": "Real-Time Stock Market Data Pipeline",
     "category": "Data Engineering",
     "imageSrc": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=700&q=80",
     "description": "End-to-end distributed data engineering pipeline ingesting real-time stock market data with Apache Kafka. MinIO object storage for data lake layers, automated ingestion into Snowflake using Airflow DAGs, and dbt analytics transformation containerized with Docker.",
-    "tags": ["Apache Kafka", "Snowflake", "Apache Airflow", "MinIO", "dbt", "Docker"],
+    "tags": [
+      "Apache Kafka",
+      "Snowflake",
+      "Apache Airflow",
+      "MinIO",
+      "dbt",
+      "Docker"
+    ],
     "demo": "https://github.com/Shantanu7171/real-time-stock-data-pipeline",
     "source": "https://github.com/Shantanu7171/real-time-stock-data-pipeline",
     "architecture": {
@@ -283,12 +517,19 @@
     }
   },
   {
-    "key": 4,
+    "key": 6,
     "title": "Large-Scale Taxi Data Pipeline",
     "category": "Data Engineering & Analytics",
     "imageSrc": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80",
     "description": "Scalable NYC Yellow Taxi data pipeline ingesting streams via Kafka into MinIO Bronze/Silver storage tiers. High-performance data transformation with Polars, orchestrated via Apache Airflow, analytics in Snowflake, and interactive Streamlit visualization dashboard.",
-    "tags": ["Kafka", "MinIO", "Snowflake", "Polars", "Airflow", "Streamlit"],
+    "tags": [
+      "Kafka",
+      "MinIO",
+      "Snowflake",
+      "Polars",
+      "Airflow",
+      "Streamlit"
+    ],
     "demo": "https://nyc-taxi-data-pipeline.streamlit.app/",
     "source": "https://github.com/Shantanu7171/large-scale-taxi-data-pipeline",
     "architecture": {
@@ -382,12 +623,17 @@
     }
   },
   {
-    "key": 5,
+    "key": 7,
     "title": "React Recipe Application",
     "category": "Frontend Development",
     "imageSrc": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80",
     "description": "Interactive recipe discovery single-page web app engineered with React.js and the Mealdb REST API. Features real-time dish searching, cuisine filtering, responsive card grid layouts, and ingredient breakdowns.",
-    "tags": ["React.js", "REST API", "JavaScript", "Responsive UI"],
+    "tags": [
+      "React.js",
+      "REST API",
+      "JavaScript",
+      "Responsive UI"
+    ],
     "demo": "https://food-app-1r6i.vercel.app/",
     "source": "https://github.com/Shantanu7171/Food_app",
     "architecture": {
@@ -453,12 +699,17 @@
     }
   },
   {
-    "key": 6,
+    "key": 8,
     "title": "Dynamic Blog & Content Platform",
     "category": "Full Stack Web",
     "imageSrc": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=80",
     "description": "Full-featured blogging and microblog platform built with Django and Jinja templates. Includes full CRUD post publishing, custom form handling, admin panel management, and media optimization for fast image delivery.",
-    "tags": ["Django", "Jinja Templates", "PostgreSQL", "Bootstrap"],
+    "tags": [
+      "Django",
+      "Jinja Templates",
+      "PostgreSQL",
+      "Bootstrap"
+    ],
     "demo": "https://blogweb-hs4a.onrender.com",
     "source": "https://github.com/Shantanu7171/blogweb",
     "architecture": {

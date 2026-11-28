@@ -211,7 +211,7 @@ const Home = ({ onOpenResume }) => {
                   <div className="metric-box">
                     <FaCode className="metric-icon" />
                     <div>
-                      <strong>6+</strong>
+                      <strong>8+</strong>
                       <span>Projects</span>
                     </div>
                   </div>

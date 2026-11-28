@@ -1903,6 +1903,25 @@ img {
   margin: 2px 0 0 0;
 }
 
+.btn-mailto-fallback {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  background: rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-mailto-fallback:hover {
+  background: rgba(239, 68, 68, 0.45);
+  color: #ffffff;
+}
+
 /* =========================================================
    Footer
    ========================================================= */
